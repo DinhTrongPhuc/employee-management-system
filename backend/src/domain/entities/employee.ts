@@ -1,6 +1,6 @@
 import { Email } from "../value-object/Email";
 
-export enum _role {
+export enum Role {
   HR = "HR",
   Manager = "Manager",
   Staff = "Staff",
@@ -11,36 +11,46 @@ export class Employee {
     private readonly _id: string,
     private _name: string,
     private _email: Email,
-    private _role: _role,
+    private _role: Role,
     private _salary: number,
-    private _updatedAt: Date,
-  ) {}
+    private _updatedAt: Date = new Date(),
+  ) {
+    if (!_id || _id.trim() === "") {
+      throw new Error("ID cannot be empty");
+    }
+    if (!_name || _name.trim() === "") {
+      throw new Error("Name cannot be empty");
+    }
+    if (_salary <= 0) {
+      throw new Error("Salary must be a positive number");
+    }
+  }
 
-  get id(): string {
+  get Id(): string {
     return this._id;
   }
 
-  get name(): string {
+  get Name(): string {
     return this._name;
   }
 
-  get email(): Email {
+  get Email(): Email {
     return this._email;
   }
 
-  get role(): _role {
+  get Role(): Role {
     return this._role;
   }
 
-  get salary(): number {
+  get Salary(): number {
     return this._salary;
   }
 
-  get updatedAt(): Date {
+  get UpdatedAt(): Date {
     return this._updatedAt;
   }
 
-  set name(newName: string) {
+  changeName(newName: string) {
     if (!newName || newName.trim() === "") {
       throw new Error("Name cannot be empty");
     }
@@ -48,17 +58,17 @@ export class Employee {
     this._updatedAt = new Date();
   }
 
-  set email(newEmail: Email) {
+  changeEmail(newEmail: Email) {
     this._email = newEmail;
     this._updatedAt = new Date();
   }
 
-  set role(newRole: _role) {
+  changeRole(newRole: Role) {
     this._role = newRole;
     this._updatedAt = new Date();
   }
 
-  set salary(newSalary: number) {
+  updateSalary(newSalary: number) {
     if (newSalary <= 0) {
       throw new Error("Salary must be a positive number");
     }
