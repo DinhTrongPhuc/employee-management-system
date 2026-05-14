@@ -51,9 +51,6 @@ export class Employee {
   }
 
   changeName(newName: string) {
-    if (!newName || newName.trim() === "") {
-      throw new Error("Name cannot be empty");
-    }
     this._name = newName;
     this._updatedAt = new Date();
   }
@@ -69,9 +66,6 @@ export class Employee {
   }
 
   updateSalary(newSalary: number) {
-    if (newSalary <= 0) {
-      throw new Error("Salary must be a positive number");
-    }
     this._salary = newSalary;
     this._updatedAt = new Date();
   }
