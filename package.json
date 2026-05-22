@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:be": "cd server && pnpm run dev",
+    "dev:be": "cd backend && pnpm run dev",
     "dev:fe": ""
   },
   "keywords": [],
