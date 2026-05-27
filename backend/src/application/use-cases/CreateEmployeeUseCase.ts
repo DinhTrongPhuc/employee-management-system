@@ -4,7 +4,7 @@ import { Name } from "../../domain/value-object/Name";
 import { EmployeeRepository } from "../ports/EmployeeRepository";
 
 export class CreateEmployeeUseCase {
-  constructor(private employeeRepository: EmployeeRepository) { }
+  constructor(private employeeRepository: EmployeeRepository) {}
 
   async execute(
     id: string,
@@ -15,6 +15,7 @@ export class CreateEmployeeUseCase {
     updatedAt: Date = new Date(),
   ): Promise<void> {
     const employee = new Employee(id, name, email, role, salary, updatedAt);
+
     await this.employeeRepository.save(employee);
   }
 }

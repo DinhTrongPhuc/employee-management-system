@@ -2,21 +2,22 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import express from "express";
-
+// Middleware
 import { loginMiddleware } from "./middleware/login.middleware";
 import { apikeyMiddleware } from "./middleware/apikey.middleware";
-
-//routes
-import employeeRoutes from "./interfaces/http/routes/EmployeeRoutes";
+// Routes
+import EmployeeRoutes from "./interfaces/http/routes/EmployeeRoutes";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Middleware
 app.use(express.json());
 app.use(loginMiddleware);
 app.use(apikeyMiddleware);
 
-app.use("/employees", employeeRoutes);
+// Routes
+app.use("/employees", EmployeeRoutes);
 
 app.get("/health", (req, res) => {
   res.send({ status: "ok" });
