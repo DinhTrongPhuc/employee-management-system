@@ -1,4 +1,5 @@
 import { Email } from "../value-object/Email";
+import { Name } from "../value-object/Name";
 
 export enum Role {
   HR = "HR",
@@ -9,18 +10,12 @@ export enum Role {
 export class Employee {
   constructor(
     private readonly _id: string,
-    private _name: string,
+    private _name: Name,
     private _email: Email,
     private _role: Role,
     private _salary: number,
     private _updatedAt: Date = new Date(),
   ) {
-    if (!_id || _id.trim() === "") {
-      throw new Error("ID cannot be empty");
-    }
-    if (!_name || _name.trim() === "") {
-      throw new Error("Name cannot be empty");
-    }
     if (_salary <= 0) {
       throw new Error("Salary must be a positive number");
     }
@@ -30,7 +25,7 @@ export class Employee {
     return this._id;
   }
 
-  get Name(): string {
+  get Name(): Name {
     return this._name;
   }
 
@@ -50,7 +45,7 @@ export class Employee {
     return this._updatedAt;
   }
 
-  changeName(newName: string) {
+  changeName(newName: Name) {
     this._name = newName;
     this._updatedAt = new Date();
   }

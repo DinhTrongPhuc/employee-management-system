@@ -1,13 +1,14 @@
 import { Employee, Role } from "../../domain/entities/Employee";
 import { Email } from "../../domain/value-object/Email";
-import { InMemoryEmployeeRepository } from "../../infrastructure/repositories/InMemoryEmployeeRepository";
+import { Name } from "../../domain/value-object/Name";
+import { EmployeeRepository } from "../ports/EmployeeRepository";
 
 export class CreateEmployeeUseCase {
-  constructor(private employeeRepository: InMemoryEmployeeRepository) {}
+  constructor(private employeeRepository: EmployeeRepository) { }
 
   async execute(
     id: string,
-    name: string,
+    name: Name,
     email: Email,
     role: Role,
     salary: number,
