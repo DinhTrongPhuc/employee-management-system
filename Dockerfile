@@ -15,7 +15,7 @@ FROM node:${NODE_VERSION}-alpine
 ENV NODE_ENV development
 
 # Install pnpm.
-RUN pnpm install -g pnpm@${PNPM_VERSION}
+RUN npm install -g pnpm@${PNPM_VERSION}
 
 WORKDIR /app
 

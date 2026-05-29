@@ -5,6 +5,10 @@ export class SearchEmployeeUseCase {
   constructor(private readonly employeeRepository: EmployeeRepository) {}
 
   async execute(id: string): Promise<Employee> {
-    return await this.employeeRepository.findById(id);
+    const employee = await this.employeeRepository.findById(id);
+    if (!employee) {
+      throw new Error("Employee not found");
+    }
+    return employee;
   }
 }

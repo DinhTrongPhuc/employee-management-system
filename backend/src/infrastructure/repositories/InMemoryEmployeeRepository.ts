@@ -12,7 +12,7 @@ export class InMemoryEmployeeRepository implements EmployeeRepository {
     return [...this.employees]; // trả về mảng mới sao chép từ mảng gốc để tránh bị thay đổi bên ngoài
   }
 
-  async findById(id: string): Promise<Employee> {
+  async findById(id: string): Promise<Employee | null> {
     const existingEmployee = this.employees.find((emp) => emp.Id === id);
     if (!existingEmployee) {
       throw new Error("Employee not found");
@@ -21,10 +21,18 @@ export class InMemoryEmployeeRepository implements EmployeeRepository {
   }
 
   async updateById(id: string, employee: Employee): Promise<void> {
-    throw new Error("Method not implemented.");
+    const index = this.employees.findIndex((emp) => emp.Id === id);
+    if (index === -1) {
+      throw new Error("Employee not found");
+    }
+    this.employees[index] = employee;
   }
 
   async deleteById(id: string): Promise<void> {
-    throw new Error("Method not implemented.");
+    const index = this.employees.findIndex((emp) => emp.Id === id);
+    if (index === -1) {
+      throw new Error("Employee not found");
+    }
+    this.employees.splice(index, 1);
   }
 }

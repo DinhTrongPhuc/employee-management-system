@@ -9,6 +9,7 @@ import { apikeyMiddleware } from "./middleware/apikey.middleware";
 import { EmployeeRoutes } from "./interfaces/http/routes/EmployeeRoutes";
 //infrastructure
 import { InMemoryEmployeeRepository } from "./infrastructure/repositories/InMemoryEmployeeRepository";
+import { PostgresEmployeeRepository } from "./infrastructure/repositories/PostgresEmployeeRepository";
 //application usecase
 import { CreateEmployeeUseCase } from "./application/use-cases/CreateEmployeeUseCase";
 import { ReadListEmployeeUseCase } from "./application/use-cases/ReadListEmployeeUseCase";
@@ -18,7 +19,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 //infrastructure
-const repo = new InMemoryEmployeeRepository();
+const repo = new PostgresEmployeeRepository();
 //application usecase
 const createUseCase = new CreateEmployeeUseCase(repo);
 const readUseCase = new ReadListEmployeeUseCase(repo);

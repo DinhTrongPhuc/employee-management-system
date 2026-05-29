@@ -14,7 +14,7 @@ export class Employee {
     private _email: Email,
     private _role: Role,
     private _salary: number,
-    private _updatedAt: Date = new Date(),
+    private _updateAt: Date = new Date(),
   ) {
     if (_salary <= 0) {
       throw new Error("Salary must be a positive number");
@@ -42,26 +42,26 @@ export class Employee {
   }
 
   get UpdatedAt(): Date {
-    return this._updatedAt;
+    return this._updateAt;
   }
 
   changeName(newName: Name) {
     this._name = newName;
-    this._updatedAt = new Date();
+    this._updateAt = new Date();
   }
 
   changeEmail(newEmail: Email) {
     this._email = newEmail;
-    this._updatedAt = new Date();
+    this._updateAt = new Date();
   }
 
   changeRole(newRole: Role) {
     this._role = newRole;
-    this._updatedAt = new Date();
+    this._updateAt = new Date();
   }
 
   updateSalary(newSalary: number) {
     this._salary = newSalary;
-    this._updatedAt = new Date();
+    this._updateAt = new Date();
   }
 }
