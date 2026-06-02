@@ -75,5 +75,9 @@ export class PostgresEmployeeRepository implements EmployeeRepository {
 
   async updateById(id: string, employee: Employee): Promise<void> {}
 
-  async deleteById(id: string): Promise<void> {}
+  async deleteById(id: string): Promise<void> {
+    const query = `DELETE FROM employees WHERE id=$1`;
+
+    await this.pool.query(query, [id]);
+  }
 }

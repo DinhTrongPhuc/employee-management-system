@@ -4,11 +4,9 @@ import { EmployeeRepository } from "../ports/EmployeeRepository";
 export class SearchEmployeeUseCase {
   constructor(private readonly employeeRepository: EmployeeRepository) {}
 
-  async execute(id: string): Promise<Employee> {
+  async execute(id: string): Promise<Employee | null> {
     const employee = await this.employeeRepository.findById(id);
-    if (!employee) {
-      throw new Error("Employee not found");
-    }
-    return employee;
+
+    return employee || null;
   }
 }

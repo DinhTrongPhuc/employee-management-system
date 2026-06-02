@@ -23,7 +23,6 @@ const repo = new PostgresEmployeeRepository();
 //application usecase
 const createUseCase = new CreateEmployeeUseCase(repo);
 const readUseCase = new ReadListEmployeeUseCase(repo);
-
 const searchUseCase = new SearchEmployeeUseCase(repo);
 
 const employeeRouter = EmployeeRoutes(

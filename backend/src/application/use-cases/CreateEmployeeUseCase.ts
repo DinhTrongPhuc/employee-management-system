@@ -13,9 +13,11 @@ export class CreateEmployeeUseCase {
     role: Role,
     salary: number,
     updatedAt: Date = new Date(),
-  ): Promise<void> {
+  ): Promise<Employee> {
     const employee = new Employee(id, name, email, role, salary, updatedAt);
 
     await this.employeeRepository.save(employee);
+
+    return employee;
   }
 }
