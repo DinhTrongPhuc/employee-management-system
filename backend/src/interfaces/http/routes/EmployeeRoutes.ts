@@ -5,11 +5,15 @@ import { Name } from "../../../domain/value-object/Name";
 import { CreateEmployeeUseCase } from "../../../application/use-cases/CreateEmployeeUseCase";
 import { ReadListEmployeeUseCase } from "../../../application/use-cases/ReadListEmployeeUseCase";
 import { SearchEmployeeUseCase } from "../../../application/use-cases/SearchEmployeeUseCase";
+import { UpdateEmployeeUseCase } from "../../../application/use-cases/UpdateEmployeeUseCase";
+import { DeleteEmployeeUseCase } from "../../../application/use-cases/DeleteEmployeeUseCase";
 
 export const EmployeeRoutes = (
   createUseCase: CreateEmployeeUseCase,
   readUseCase: ReadListEmployeeUseCase,
   searchUseCase: SearchEmployeeUseCase,
+  deleteUseCase: DeleteEmployeeUseCase,
+  updateUseCase: UpdateEmployeeUseCase,
 ): Router => {
   const router = express.Router();
 
@@ -60,12 +64,41 @@ export const EmployeeRoutes = (
 
   router.delete("/:id", async (req: Request, res: Response) => {
     try {
-      //method
       const { id } = req.params;
+
+      if (typeof id !== "string") {
+        return res.status(400).json({ error: "Invalid ID format" });
+      }
+
+      await deleteUseCase.execute(id);
 
       res.status(200).json({ message: "Employee deleted" });
     } catch (error: any) {
-      res.status(500).json({ error, message: "Internal Server Error" });
+      const status = error.message === "Employee not found" ? 404 : 500;
+      res.status(status).json({ error, message: "Internal Server Error" });
+    }
+  });
+
+  router.put("/:id", async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
+      const { name, email, role, salary } = req.body;
+
+      if (typeof id !== "string") {
+        throw new Error("Invalid ID format");
+      }
+
+      const employee = await updateUseCase.execute(id, {
+        name,
+        email,
+        role,
+        salary,
+      });
+
+      res.status(200).json({ employee, message: "Employee updated" });
+    } catch (error: any) {
+      const status = error.message === "Employee not found" ? 404 : 500;
+      res.status(status).json({ error: error.message });
     }
   });
 

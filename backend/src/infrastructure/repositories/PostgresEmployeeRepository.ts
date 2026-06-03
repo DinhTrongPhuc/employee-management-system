@@ -73,7 +73,25 @@ export class PostgresEmployeeRepository implements EmployeeRepository {
     });
   }
 
-  async updateById(id: string, employee: Employee): Promise<void> {}
+  async updateById(id: string, employee: Employee): Promise<Employee> {
+    const query = `UPDATE employees 
+    SET name=$1, email=$2, role=$3, salary=$4, update_at=$5 
+    WHERE id=$6
+    `;
+
+    const values = [
+      employee.Name.value,
+      employee.Email.value,
+      employee.Role,
+      employee.Salary,
+      employee.UpdatedAt,
+      id,
+    ];
+
+    await this.pool.query(query, values);
+
+    return employee;
+  }
 
   async deleteById(id: string): Promise<void> {
     const query = `DELETE FROM employees WHERE id=$1`;

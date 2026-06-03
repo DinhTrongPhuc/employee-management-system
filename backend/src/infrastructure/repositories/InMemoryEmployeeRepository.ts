@@ -20,12 +20,14 @@ export class InMemoryEmployeeRepository implements EmployeeRepository {
     return existingEmployee;
   }
 
-  async updateById(id: string, employee: Employee): Promise<void> {
+  async updateById(id: string, employee: Employee): Promise<Employee> {
     const index = this.employees.findIndex((emp) => emp.Id === id);
     if (index === -1) {
       throw new Error("Employee not found");
     }
     this.employees[index] = employee;
+
+    return employee;
   }
 
   async deleteById(id: string): Promise<void> {

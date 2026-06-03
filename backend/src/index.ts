@@ -14,6 +14,8 @@ import { PostgresEmployeeRepository } from "./infrastructure/repositories/Postgr
 import { CreateEmployeeUseCase } from "./application/use-cases/CreateEmployeeUseCase";
 import { ReadListEmployeeUseCase } from "./application/use-cases/ReadListEmployeeUseCase";
 import { SearchEmployeeUseCase } from "./application/use-cases/SearchEmployeeUseCase";
+import { UpdateEmployeeUseCase } from "./application/use-cases/UpdateEmployeeUseCase";
+import { DeleteEmployeeUseCase } from "./application/use-cases/DeleteEmployeeUseCase";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -24,11 +26,15 @@ const repo = new PostgresEmployeeRepository();
 const createUseCase = new CreateEmployeeUseCase(repo);
 const readUseCase = new ReadListEmployeeUseCase(repo);
 const searchUseCase = new SearchEmployeeUseCase(repo);
+const deleteUseCase = new DeleteEmployeeUseCase(repo);
+const updateUseCase = new UpdateEmployeeUseCase(repo);
 
 const employeeRouter = EmployeeRoutes(
   createUseCase,
   readUseCase,
   searchUseCase,
+  deleteUseCase,
+  updateUseCase,
 );
 
 // Middleware
