@@ -2,9 +2,9 @@ import { Email } from "../value-object/Email";
 import { Name } from "../value-object/Name";
 
 export enum Role {
-  HR = "HR",
-  Manager = "Manager",
-  Staff = "Staff",
+  HR = "hr",
+  Manager = "manager",
+  Staff = "staff",
 }
 
 export class Employee {
