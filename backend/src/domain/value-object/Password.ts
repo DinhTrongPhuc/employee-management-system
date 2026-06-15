@@ -4,7 +4,7 @@ export class Password {
   private readonly _value: string;
 
   constructor(value: string, isHashed: boolean = false) {
-    if (!value || value.trim() === " ") {
+    if (!value || value.trim() === "") {
       throw new Error("Password cannot be empty");
     }
 

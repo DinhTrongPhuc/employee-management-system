@@ -25,6 +25,7 @@ export class User {
   get Username(): Name {
     return this._username;
   }
+
   get Email(): Email {
     return this._email;
   }

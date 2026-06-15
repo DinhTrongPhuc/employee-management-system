@@ -16,6 +16,7 @@ export class UpdateEmployeeUseCase {
     },
   ): Promise<Employee> {
     const existingEmployee = await this.employeeRepository.findById(id);
+
     if (!existingEmployee) {
       throw new Error("Employee not found");
     }
@@ -33,6 +34,7 @@ export class UpdateEmployeeUseCase {
     );
 
     await this.employeeRepository.updateById(id, updatedEmployee);
+
     return updatedEmployee;
   }
 }
