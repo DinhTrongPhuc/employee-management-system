@@ -2,9 +2,9 @@ import { Email } from "../value-object/Email";
 import { Name } from "../value-object/Name";
 
 export enum Role {
-  HR = "hr",
-  Manager = "manager",
-  Staff = "staff",
+  HR = "HR",
+  Manager = "Manager",
+  Staff = "Staff",
 }
 
 export class Employee {
@@ -61,6 +61,9 @@ export class Employee {
   }
 
   updateSalary(newSalary: number) {
+    if (newSalary <= 0) {
+      throw new Error("Salary must be a positive number");
+    }
     this._salary = newSalary;
     this._updateAt = new Date();
   }

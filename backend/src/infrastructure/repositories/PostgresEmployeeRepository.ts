@@ -7,17 +7,15 @@ import { Name } from "../../domain/value-object/Name";
 import { Email } from "../../domain/value-object/Email";
 
 export class PostgresEmployeeRepository implements EmployeeRepository {
-  private pool: Pool;
+  constructor(private readonly pool: Pool) {}
 
-  constructor() {
-    this.pool = new Pool({
-      user: process.env.DB_USER,
-      host: process.env.DB_HOST,
-      database: process.env.DB_NAME,
-      password: process.env.DB_PASSWORD,
-      port: parseInt(process.env.DB_PORT || "5432"),
-    });
-  }
+  // this.pool = new Pool({
+  //   user: process.env.DB_USER,
+  //   host: process.env.DB_HOST,
+  //   database: process.env.DB_NAME,
+  //   password: process.env.DB_PASSWORD,
+  //   port: Number(process.env.DB_PORT || "5432"),
+  // });
 
   async save(employee: Employee): Promise<void> {
     const query = `

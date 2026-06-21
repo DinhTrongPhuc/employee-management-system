@@ -16,10 +16,9 @@ services:
     env_file:
       - backend/.env
     ports:
-      - 3000:5000 #locall running on 3000 and docker running on 5000
+      - 3000:5000
     develop:
       watch:
-        # 1. Nếu sửa code trong thư mục src, sync ngay vào container
         - action: sync
           path: ./backend/src
           target: /app/backend/src
@@ -44,7 +43,7 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=employee_db
     ports:
-      - 54320:5432 #db running on 54320 and docker running on 5432
+      - 54320:5432
     volumes:
       - db-data:/var/lib/postgresql/data
 

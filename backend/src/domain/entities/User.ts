@@ -16,6 +16,7 @@ export class User {
     private _password: Password,
     private _email: Email,
     private _role: UserRole,
+    private _updateAt: Date,
   ) {}
 
   get Id(): string {
@@ -26,27 +27,39 @@ export class User {
     return this._username;
   }
 
+  get Password(): Password {
+    return this._password;
+  }
+
   get Email(): Email {
     return this._email;
   }
 
-  get Role(): UserRole {
+  get UserRole(): UserRole {
     return this._role;
+  }
+
+  get UpdateAt(): Date {
+    return this._updateAt;
   }
 
   changeUsername(newUsername: Name) {
     this._username = newUsername;
+    this._updateAt = new Date();
   }
 
   ChangePassword(newPassword: Password) {
     this._password = newPassword;
+    this._updateAt = new Date();
   }
 
   changeEmail(newEmail: Email) {
     this._email = newEmail;
+    this._updateAt = new Date();
   }
 
   changeRole(newRole: UserRole) {
     this._role = newRole;
+    this._updateAt = new Date();
   }
 }

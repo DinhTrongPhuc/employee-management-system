@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import express from "express";
+import { Pool } from "pg";
 // Middleware
 import { loginMiddleware } from "./middleware/login.middleware";
 import { apikeyMiddleware } from "./middleware/apikey.middleware";
@@ -10,6 +11,7 @@ import { EmployeeRoutes } from "./interfaces/http/routes/EmployeeRoutes";
 //infrastructure
 import { InMemoryEmployeeRepository } from "./infrastructure/repositories/InMemoryEmployeeRepository";
 import { PostgresEmployeeRepository } from "./infrastructure/repositories/PostgresEmployeeRepository";
+import { PostgresUserRepository } from "./infrastructure/repositories/PostgresUserRepository";
 //application usecase
 import { CreateEmployeeUseCase } from "./application/use-cases/CreateEmployeeUseCase";
 import { ReadListEmployeeUseCase } from "./application/use-cases/ReadListEmployeeUseCase";
@@ -20,14 +22,23 @@ import { DeleteEmployeeUseCase } from "./application/use-cases/DeleteEmployeeUse
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+const dbpool = new Pool({
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: Number(process.env.DB_PORT || 5432),
+});
+
 //infrastructure
-const repo = new PostgresEmployeeRepository();
-//application usecase
-const createUseCase = new CreateEmployeeUseCase(repo);
-const readUseCase = new ReadListEmployeeUseCase(repo);
-const searchUseCase = new SearchEmployeeUseCase(repo);
-const deleteUseCase = new DeleteEmployeeUseCase(repo);
-const updateUseCase = new UpdateEmployeeUseCase(repo);
+const employyRepo = new PostgresEmployeeRepository(dbpool);
+const userRepo = new PostgresUserRepository(dbpool);
+//application usecase(Employee, User, ...)
+const createUseCase = new CreateEmployeeUseCase(employyRepo);
+const readUseCase = new ReadListEmployeeUseCase(employyRepo);
+const searchUseCase = new SearchEmployeeUseCase(employyRepo);
+const deleteUseCase = new DeleteEmployeeUseCase(employyRepo);
+const updateUseCase = new UpdateEmployeeUseCase(employyRepo);
 
 const employeeRouter = EmployeeRoutes(
   createUseCase,
