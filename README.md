@@ -1,1 +1,1 @@
-# project with pnpm congfig
+# practive project with pnpm congfig and clean architecture

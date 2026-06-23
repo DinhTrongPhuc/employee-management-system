@@ -16,6 +16,7 @@ export class PostgresUserRepository implements UserRepository {
 
     const value = [
       user.Id,
+      user.Username.value,
       user.Password.value,
       user.Email.value,
       user.UserRole,
