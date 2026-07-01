@@ -10,7 +10,7 @@ export class PostgresUserRepository implements UserRepository {
 
   async save(user: User): Promise<void> {
     const query = `
-    INSERT INTO users(id, username, password, email, userrole , updateAt 
+    INSERT INTO users(id, username, password, email, userRole , updateAt)
     VALUES ($1, $2,$3, $4, $5, $6)
     `;
 
@@ -20,7 +20,7 @@ export class PostgresUserRepository implements UserRepository {
       user.Password.value,
       user.Email.value,
       user.UserRole,
-      user.UpdateAt,
+      new Date(),
     ];
 
     await this.pool.query(query, value);
@@ -44,7 +44,7 @@ export class PostgresUserRepository implements UserRepository {
       new Name(row.username),
       new Password(row.password),
       new Email(row.email),
-      row.userrole as UserRole,
+      row.userRole as UserRole,
       new Date(row.updateAt),
     );
   }
@@ -65,7 +65,7 @@ export class PostgresUserRepository implements UserRepository {
       new Name(row.username),
       new Password(row.password),
       new Email(row.email),
-      row.userrole as UserRole,
+      row.userRole as UserRole,
       new Date(row.updateAt),
     );
   }
@@ -83,21 +83,21 @@ export class PostgresUserRepository implements UserRepository {
         new Name(row.username),
         new Password(row.password),
         new Email(row.email),
-        row.userrole as UserRole,
+        row.userRole as UserRole,
         new Date(row.updateAt),
       );
     });
   }
 
   async deleteUserById(id: string): Promise<void> {
-    const query = ` DELETE * FROM users WHERE id = $1`;
+    const query = `DELETE * FROM users WHERE id = $1`;
 
     await this.pool.query(query, [id]);
   }
 
   async updateUserById(id: string, user: User): Promise<void> {
     const query = `UPDATE users
-    SET username = $1, password = $2, email = $3, userrole = $4, updateAt = $5
+    SET username = $1, password = $2, email = $3, userRole = $4, updateAt = $5
     WHERE id = $6
     `;
 
