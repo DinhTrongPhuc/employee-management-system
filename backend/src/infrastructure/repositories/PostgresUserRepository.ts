@@ -95,7 +95,7 @@ export class PostgresUserRepository implements UserRepository {
     await this.pool.query(query, [id]);
   }
 
-  async updateUserById(id: string, user: User): Promise<void> {
+  async updateUserById(id: string, user: User): Promise<User> {
     const query = `UPDATE users
     SET username = $1, password = $2, email = $3, userRole = $4, updateAt = $5
     WHERE id = $6
@@ -111,5 +111,7 @@ export class PostgresUserRepository implements UserRepository {
     ];
 
     await this.pool.query(query, value);
+
+    return user;
   }
 }

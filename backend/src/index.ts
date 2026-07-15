@@ -13,11 +13,11 @@ import { InMemoryEmployeeRepository } from "./infrastructure/repositories/InMemo
 import { PostgresEmployeeRepository } from "./infrastructure/repositories/PostgresEmployeeRepository";
 import { PostgresUserRepository } from "./infrastructure/repositories/PostgresUserRepository";
 //application usecase
-import { CreateEmployeeUseCase } from "./application/use-cases/CreateEmployeeUseCase";
-import { ReadListEmployeeUseCase } from "./application/use-cases/ReadListEmployeeUseCase";
-import { SearchEmployeeUseCase } from "./application/use-cases/SearchEmployeeUseCase";
-import { UpdateEmployeeUseCase } from "./application/use-cases/UpdateEmployeeUseCase";
-import { DeleteEmployeeUseCase } from "./application/use-cases/DeleteEmployeeUseCase";
+import { CreateEmployeeUseCase } from "./application/use-cases/Employee/CreateEmployeeUseCase";
+import { ReadListEmployeeUseCase } from "./application/use-cases/Employee/ReadListEmployeeUseCase";
+import { SearchEmployeeUseCase } from "./application/use-cases/Employee/SearchEmployeeUseCase";
+import { UpdateEmployeeUseCase } from "./application/use-cases/Employee/UpdateEmployeeUseCase";
+import { DeleteEmployeeUseCase } from "./application/use-cases/Employee/DeleteEmployeeUseCase";
 
 const app = express();
 const PORT = process.env.PORT || 5000;

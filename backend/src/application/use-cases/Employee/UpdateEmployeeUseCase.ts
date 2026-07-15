@@ -1,7 +1,7 @@
-import { Employee, Role } from "../../domain/entities/Employee";
-import { Email } from "../../domain/value-object/Email";
-import { Name } from "../../domain/value-object/Name";
-import { EmployeeRepository } from "../ports/EmployeeRepository";
+import { Employee, Role } from "../../../domain/entities/Employee";
+import { Email } from "../../../domain/value-object/Email";
+import { Name } from "../../../domain/value-object/Name";
+import { EmployeeRepository } from "../../ports/EmployeeRepository";
 
 export class UpdateEmployeeUseCase {
   constructor(private employeeRepository: EmployeeRepository) {}

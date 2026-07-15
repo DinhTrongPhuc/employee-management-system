@@ -1,5 +1,5 @@
-import { Employee } from "../../domain/entities/Employee";
-import { EmployeeRepository } from "../ports/EmployeeRepository";
+import { Employee } from "../../../domain/entities/Employee";
+import { EmployeeRepository } from "../../ports/EmployeeRepository";
 
 export class ReadListEmployeeUseCase {
   constructor(private employeeRepository: EmployeeRepository) {}

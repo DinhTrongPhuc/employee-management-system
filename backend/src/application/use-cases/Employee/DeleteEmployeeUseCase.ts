@@ -1,4 +1,4 @@
-import { EmployeeRepository } from "../ports/EmployeeRepository";
+import { EmployeeRepository } from "../../ports/EmployeeRepository";
 
 export class DeleteEmployeeUseCase {
   constructor(private employeeRepository: EmployeeRepository) {}

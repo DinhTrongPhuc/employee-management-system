@@ -2,11 +2,11 @@ import express, { Request, Response, Router } from "express";
 import { Role } from "../../../domain/entities/Employee";
 import { Email } from "../../../domain/value-object/Email";
 import { Name } from "../../../domain/value-object/Name";
-import { CreateEmployeeUseCase } from "../../../application/use-cases/CreateEmployeeUseCase";
-import { ReadListEmployeeUseCase } from "../../../application/use-cases/ReadListEmployeeUseCase";
-import { SearchEmployeeUseCase } from "../../../application/use-cases/SearchEmployeeUseCase";
-import { UpdateEmployeeUseCase } from "../../../application/use-cases/UpdateEmployeeUseCase";
-import { DeleteEmployeeUseCase } from "../../../application/use-cases/DeleteEmployeeUseCase";
+import { CreateEmployeeUseCase } from "../../../application/use-cases/Employee/CreateEmployeeUseCase";
+import { ReadListEmployeeUseCase } from "../../../application/use-cases/Employee/ReadListEmployeeUseCase";
+import { SearchEmployeeUseCase } from "../../../application/use-cases/Employee/SearchEmployeeUseCase";
+import { UpdateEmployeeUseCase } from "../../../application/use-cases/Employee/UpdateEmployeeUseCase";
+import { DeleteEmployeeUseCase } from "../../../application/use-cases/Employee/DeleteEmployeeUseCase";
 
 export const EmployeeRoutes = (
   createUseCase: CreateEmployeeUseCase,
