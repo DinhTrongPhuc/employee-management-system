@@ -1,6 +1,6 @@
 import { UserRepository } from "../../ports/UserRepository";
 
-export class DeleteUserUser {
+export class DeleteUserUseCase {
   constructor(private userRepository: UserRepository) {}
 
   async execute(id: string): Promise<void> {
